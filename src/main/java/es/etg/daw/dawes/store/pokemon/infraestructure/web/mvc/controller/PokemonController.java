@@ -1,15 +1,21 @@
 package es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.etg.daw.dawes.store.pokemon.application.command.CreatePokemonCommand;
 import es.etg.daw.dawes.store.pokemon.application.service.CreatePokemonService;
+import es.etg.daw.dawes.store.pokemon.application.service.FindPokemonService;
 import es.etg.daw.dawes.store.pokemon.domain.model.Pokemon;
 import es.etg.daw.dawes.store.pokemon.infraestructure.mapper.PokemonMapper;
 import es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto.PokemonRequest;
+import es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.dto.PokemonResponse;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -21,6 +27,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class PokemonController {
 
     private final CreatePokemonService createPokemonService;
+    
+    //atributo para el servicio
+    private final FindPokemonService findPokemonService;
+
 
     @PostMapping
     @ResponseBody
@@ -45,5 +55,16 @@ public class PokemonController {
             </html>
             """.formatted(pokemon.getId(), pokemon.getNombre(), pokemon.getTipo(), pokemon.getPrecio(), pokemon.getCreatedAt());
     }
+
+    //Método GET
+    @GetMapping
+    @ResponseBody //Usamos esta anotación para devolver una respuesta, nuestra lista.
+    public List<PokemonResponse> allPokemon(){
+        return findPokemonService.findAll()
+              .stream() //Convierte la lista en un flujo
+                      .map(PokemonMapper::toResponse) //Mapeamos/Convertimos cada elemento del flujo (Producto) en un objeto de Respuesta (ProductoResponse)
+                      .toList(); //Lo devuelve como una lista.
+    }
+
     
 }
