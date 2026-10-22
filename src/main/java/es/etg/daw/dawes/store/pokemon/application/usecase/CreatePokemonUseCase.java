@@ -16,7 +16,6 @@ public class CreatePokemonUseCase {
                                  .precio(comando.precio())
                                  .createdAt(LocalDateTime.now()).build();
 
-        //TODO Faltaría la lógica sobre el pokemon, por ejemplo, almacenarlo en una base de datos.
         return pokemon;
     }
     

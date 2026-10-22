@@ -11,7 +11,6 @@ import lombok.Data;
 @Builder 
 public class Pokemon {
 
-    // Atributos
     private int id;
     private String nombre;
     private String tipo;

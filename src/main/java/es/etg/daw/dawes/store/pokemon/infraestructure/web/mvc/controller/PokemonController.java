@@ -17,18 +17,16 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller 
-@RequestMapping ("/pokemons") //URL será /pokemons
+@RequestMapping ("/pokemons") 
 @RequiredArgsConstructor 
 
 public class PokemonController {
 
     private final CreatePokemonService createPokemonService;
     
-    //atributo para el servicio
     private final FindPokemonService findPokemonService;
 
 
@@ -56,14 +54,13 @@ public class PokemonController {
             """.formatted(pokemon.getId(), pokemon.getNombre(), pokemon.getTipo(), pokemon.getPrecio(), pokemon.getCreatedAt());
     }
 
-    //Método GET
     @GetMapping
-    @ResponseBody //Usamos esta anotación para devolver una respuesta, nuestra lista.
+    @ResponseBody 
     public List<PokemonResponse> allPokemon(){
         return findPokemonService.findAll()
-              .stream() //Convierte la lista en un flujo
-                      .map(PokemonMapper::toResponse) //Mapeamos/Convertimos cada elemento del flujo (Producto) en un objeto de Respuesta (ProductoResponse)
-                      .toList(); //Lo devuelve como una lista.
+              .stream() 
+                      .map(PokemonMapper::toResponse)
+                      .toList(); 
     }
 
     
