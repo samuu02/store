@@ -6,6 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import es.etg.daw.dawes.store.pokemon.application.service.DeletePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.command.CreatePokemonCommand;
 import es.etg.daw.dawes.store.pokemon.application.service.CreatePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.service.FindPokemonService;
@@ -28,6 +32,8 @@ public class PokemonController {
     private final CreatePokemonService createPokemonService;
     
     private final FindPokemonService findPokemonService;
+
+    private final DeletePokemonService deletePokemonService;
 
 
     @PostMapping
@@ -61,6 +67,11 @@ public class PokemonController {
               .stream() 
                       .map(PokemonMapper::toResponse)
                       .toList(); 
+    }
+        @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePokemon(@PathVariable int id) {
+        deletePokemonService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     
