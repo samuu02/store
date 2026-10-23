@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import es.etg.daw.dawes.store.pokemon.application.service.DeletePokemonService;
+import es.etg.daw.dawes.store.pokemon.application.service.EditPokemonService;
 import es.etg.daw.dawes.store.pokemon.application.command.CreatePokemonCommand;
+import es.etg.daw.dawes.store.pokemon.application.command.EditPokemonCommand;
 import es.etg.daw.dawes.store.pokemon.application.service.CreatePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.service.FindPokemonService;
 import es.etg.daw.dawes.store.pokemon.domain.model.Pokemon;
@@ -21,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller 
@@ -34,6 +38,8 @@ public class PokemonController {
     private final FindPokemonService findPokemonService;
 
     private final DeletePokemonService deletePokemonService;
+
+    private final EditPokemonService editPokemonService;
 
 
     @PostMapping
@@ -68,11 +74,17 @@ public class PokemonController {
                       .map(PokemonMapper::toResponse)
                       .toList(); 
     }
-        @DeleteMapping("/{id}")
+    
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePokemon(@PathVariable int id) {
         deletePokemonService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    
+    @PutMapping("/{id}")
+    public PokemonResponse editPokemon(@PathVariable int id, @RequestBody PokemonRequest pokemonRequest){
+        EditPokemonCommand comando = PokemonMapper.toCommand(id, pokemonRequest);
+        Pokemon pokemon = editPokemonService.update(comando);
+        return  PokemonMapper.toResponse(pokemon); 
+    }
 }

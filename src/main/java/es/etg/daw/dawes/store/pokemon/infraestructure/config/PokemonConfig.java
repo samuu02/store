@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import es.etg.daw.dawes.store.pokemon.application.service.DeletePokemonService;
+import es.etg.daw.dawes.store.pokemon.application.service.EditPokemonService;
 import es.etg.daw.dawes.store.pokemon.application.usecase.DeletePokemonUseCase;
+import es.etg.daw.dawes.store.pokemon.application.usecase.EditPokemonUseCase;
 import es.etg.daw.dawes.store.pokemon.application.service.CreatePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.service.FindPokemonService;
 import es.etg.daw.dawes.store.pokemon.application.usecase.CreatePokemonUseCase;
@@ -34,7 +36,8 @@ public class PokemonConfig {
     public FindPokemonService findPokemonService(){
         return new FindPokemonService(findPokemonUseCase());
     }
-        @Bean
+        
+    @Bean
     public DeletePokemonUseCase deletePokemonUseCase(){
         return new DeletePokemonUseCase();
     }
@@ -44,4 +47,13 @@ public class PokemonConfig {
         return new DeletePokemonService(deletePokemonUseCase());
     }
     
+    @Bean 
+    public EditPokemonUseCase editPokemonUseCase(){
+        return new EditPokemonUseCase();
+    }
+
+    @Bean 
+    public EditPokemonService editPokemonService(){
+        return new EditPokemonService(editPokemonUseCase());
+    }
 }

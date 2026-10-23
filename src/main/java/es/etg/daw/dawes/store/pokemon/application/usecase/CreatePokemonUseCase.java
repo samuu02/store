@@ -7,7 +7,7 @@ import es.etg.daw.dawes.store.pokemon.domain.model.Pokemon;
 
 public class CreatePokemonUseCase {
 
-    public Pokemon create( CreatePokemonCommand comando){
+    public Pokemon create(CreatePokemonCommand comando){
         
         Pokemon pokemon = Pokemon.builder()
                                  .nombre(comando.nombre())

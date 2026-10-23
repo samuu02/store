@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 @Getter
 @AllArgsConstructor
 @Accessors(fluent = true) 
+
 public class CreatePokemonCommand {
     
     private String nombre;
