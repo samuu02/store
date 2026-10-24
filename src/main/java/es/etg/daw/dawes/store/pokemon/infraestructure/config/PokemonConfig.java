@@ -47,13 +47,15 @@ public class PokemonConfig {
         return new DeletePokemonService(deletePokemonUseCase());
     }
     
-    @Bean 
+    @Bean
     public EditPokemonUseCase editPokemonUseCase(){
         return new EditPokemonUseCase();
     }
 
-    @Bean 
+    @Bean
     public EditPokemonService editPokemonService(){
         return new EditPokemonService(editPokemonUseCase());
     }
+
+    
 }

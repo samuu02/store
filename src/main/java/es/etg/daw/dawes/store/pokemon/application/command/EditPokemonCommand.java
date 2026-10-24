@@ -6,8 +6,7 @@ import lombok.experimental.Accessors;
 
 @Getter
 @AllArgsConstructor
-@Accessors(fluent = true) 
-
+@Accessors(fluent = true)
 public class EditPokemonCommand {
 
     private int id;

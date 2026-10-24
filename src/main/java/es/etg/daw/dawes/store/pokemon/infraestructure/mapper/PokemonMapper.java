@@ -23,4 +23,5 @@ public class PokemonMapper {
     public static EditPokemonCommand toCommand(int id, PokemonRequest request){
         return new EditPokemonCommand(id,request.foto(), request.precio());
     }
+    
 }
