@@ -7,14 +7,13 @@ import es.etg.daw.dawes.store.pokemon.application.usecase.EditPokemonUseCase;
 import es.etg.daw.dawes.store.pokemon.domain.model.Pokemon;
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor 
-@Service 
+@RequiredArgsConstructor
+@Service
 public class EditPokemonService {
-    
+
     private final EditPokemonUseCase editPokemonUseCase;
 
     public Pokemon update(EditPokemonCommand comando) {
-        Pokemon pokemon = editPokemonUseCase.update(comando);
-        return pokemon;
+        return editPokemonUseCase.update(comando);
     }
 }
