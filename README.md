@@ -1,4 +1,5 @@
-# Store
+![Pokemon Store](docs/banner.jpg)
+
 Aplicación desarrollada con **Java y Spring Boot** para gestionar Pokemon, organizada siguiendo los principios de **Clean Architecture** y el enfoque de **Vertical Slicing**.
 - Hasta ahora, un slice: Pokemon, con cuatro funcionalidades: crear, listar, borrar y modificar Pokemon.
 ## Tecnologías
