@@ -11,15 +11,18 @@ import es.etg.daw.dawes.store.pokemon.application.service.CreatePokemonService;
 import es.etg.daw.dawes.store.pokemon.application.service.FindPokemonService;
 import es.etg.daw.dawes.store.pokemon.application.usecase.CreatePokemonUseCase;
 import es.etg.daw.dawes.store.pokemon.application.usecase.FindPokemonUseCase;
+import es.etg.daw.dawes.store.pokemon.domain.repository.PokemonRepository;
 import lombok.RequiredArgsConstructor;
 
 @Configuration 
 @RequiredArgsConstructor 
 public class PokemonConfig {
 
+    private final PokemonRepository pokemonRepository;
+    
     @Bean 
     public CreatePokemonUseCase createPokemonUseCase(){
-        return new CreatePokemonUseCase();
+        return new CreatePokemonUseCase(pokemonRepository);
     }
 
     @Bean 
@@ -29,7 +32,7 @@ public class PokemonConfig {
 
     @Bean 
     public FindPokemonUseCase findPokemonUseCase(){
-        return new FindPokemonUseCase();
+        return new FindPokemonUseCase(pokemonRepository);
     }
 
     @Bean 
@@ -39,7 +42,7 @@ public class PokemonConfig {
         
     @Bean
     public DeletePokemonUseCase deletePokemonUseCase(){
-        return new DeletePokemonUseCase();
+        return new DeletePokemonUseCase(pokemonRepository);
     }
 
     @Bean
@@ -49,13 +52,12 @@ public class PokemonConfig {
     
     @Bean
     public EditPokemonUseCase editPokemonUseCase(){
-        return new EditPokemonUseCase();
+        return new EditPokemonUseCase(pokemonRepository);
     }
 
     @Bean
     public EditPokemonService editPokemonService(){
         return new EditPokemonService(editPokemonUseCase());
     }
-
     
 }
