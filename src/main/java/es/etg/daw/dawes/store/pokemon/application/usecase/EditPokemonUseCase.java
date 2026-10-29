@@ -1,26 +1,23 @@
 package es.etg.daw.dawes.store.pokemon.application.usecase;
 
-import java.time.LocalDateTime;
-
 import es.etg.daw.dawes.store.pokemon.application.command.EditPokemonCommand;
 import es.etg.daw.dawes.store.pokemon.domain.model.Pokemon;
 import es.etg.daw.dawes.store.pokemon.domain.repository.PokemonRepository;
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor 
+@AllArgsConstructor
 public class EditPokemonUseCase {
 
-    private PokemonRepository pokemonRepository;
+    private final PokemonRepository pokemonRepository;
+    private final FindPokemonUseCase findPokemonUseCase;
 
-    public Pokemon update(EditPokemonCommand comando) {
+    public Pokemon update(EditPokemonCommand command) {
+    
+        Pokemon pokemonExistente = findPokemonUseCase.findById(command.id());
 
-        Pokemon pokemon = Pokemon.builder()
-                                 .id(comando.id())
-                                 .foto(comando.foto())
-                                 .precio(comando.precio())
-                                 .createdAt(LocalDateTime.now()).build();
+        pokemonExistente.setFoto(command.foto());
+        pokemonExistente.setPrecio(command.precio());
 
-        return pokemonRepository.save(pokemon);
-
+        return pokemonRepository.save(pokemonExistente);
     }
 }

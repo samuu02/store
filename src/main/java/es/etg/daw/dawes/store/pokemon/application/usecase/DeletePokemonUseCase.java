@@ -6,9 +6,13 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor 
 public class DeletePokemonUseCase {
 
-    private PokemonRepository pokemonRepository;
+    private final PokemonRepository pokemonRepository;
+    private final FindPokemonUseCase findPokemonUseCase; 
 
     public void delete(int id) {
-       pokemonRepository.deteteById(id);
+
+        findPokemonUseCase.findById(id);
+
+        pokemonRepository.deteteById(id);
     }
 }

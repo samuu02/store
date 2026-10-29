@@ -41,19 +41,18 @@ public class PokemonConfig {
     }
         
     @Bean
-    public DeletePokemonUseCase deletePokemonUseCase(){
-        return new DeletePokemonUseCase(pokemonRepository);
-    }
-
+    public DeletePokemonUseCase deletePokemonUseCase() {
+    return new DeletePokemonUseCase(pokemonRepository, findPokemonUseCase());
+}
     @Bean
     public DeletePokemonService deletePokemonService(){
         return new DeletePokemonService(deletePokemonUseCase());
     }
     
     @Bean
-    public EditPokemonUseCase editPokemonUseCase(){
-        return new EditPokemonUseCase(pokemonRepository);
-    }
+    public EditPokemonUseCase editPokemonUseCase() {
+    return new EditPokemonUseCase(pokemonRepository, findPokemonUseCase());
+}
 
     @Bean
     public EditPokemonService editPokemonService(){
