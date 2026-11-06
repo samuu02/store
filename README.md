@@ -25,4 +25,4 @@ Además, se usa **Vertical Slicing** para organizar la aplicación en torno a la
 - Crear Pokemon: http://localhost:8080/formulario-crear-pokemon.html
 - Obtener listado de Pokemons: http://localhost:8080/pokemons
 - Borrar Pokemon: http://localhost:8080/formulario-borrar-pokemon.html
-- Editar Pokemon: http://localhost:8080/formulario-editar-pokemon.html
+- Editar Pokemon: ```curl -i -X PUT http://localhost:8080/pokemons/5 -H "Content-Type: application/json" -d '{"nombre":"Pikachu","tipo":"Electrico","foto":"nueva.jpg","precio":25}'```
