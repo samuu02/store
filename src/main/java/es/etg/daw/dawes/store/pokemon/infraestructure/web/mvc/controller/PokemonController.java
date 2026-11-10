@@ -2,13 +2,9 @@ package es.etg.daw.dawes.store.pokemon.infraestructure.web.mvc.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.util.HtmlUtils;
 
 import es.etg.daw.dawes.store.pokemon.application.command.CreatePokemonCommand;
 import es.etg.daw.dawes.store.pokemon.application.command.EditPokemonCommand;
@@ -69,11 +63,11 @@ public class PokemonController {
 
     @GetMapping
     @ResponseBody 
-    public List<PokemonResponse> allPokemon(){
+    public List<PokemonResponse> allPokemon() {
         return findPokemonService.findAll()
               .stream() 
-                      .map(pokemonMapper::toResponse)
-                      .toList(); 
+              .map(pokemonMapper::toResponse)
+              .toList(); 
     }
     
     @DeleteMapping("/{id}")
@@ -88,33 +82,5 @@ public class PokemonController {
         EditPokemonCommand comando = pokemonMapper.toCommand(id, pokemonRequest);
         Pokemon pokemon = editPokemonService.update(comando);
         return pokemonMapper.toResponse(pokemon);
-    }
-
-    // Método Handler que gestiona los errores de validación y los devuelve formateados en HTML
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    @ResponseBody
-    public String handleValidationExceptions(MethodArgumentNotValidException ex) {
-
-        StringBuilder html = new StringBuilder(256);
-        html.append("<!DOCTYPE html>")
-            .append("<html lang=\"es\"><head><meta charset=\"UTF-8\">")
-            .append("<title>Errores de validación</title></head><body>")
-            .append("<h1>Errores de validación</h1>")
-            .append("<ul>");
-
-        ex.getBindingResult().getAllErrors().forEach(error -> {
-            String field   = (error instanceof FieldError fe) ? fe.getField() : error.getObjectName();
-            String message = error.getDefaultMessage();
-
-            html.append("<li><strong>")
-                .append(HtmlUtils.htmlEscape(field))
-                .append("</strong>: ")
-                .append(HtmlUtils.htmlEscape(message))
-                .append("</li>");
-        });
-
-        html.append("</ul></body></html>");
-        return html.toString();
     }
 }

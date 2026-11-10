@@ -7,13 +7,14 @@
 <body>
     <h1>Crear Pokemon</h1>
 
-    <form action="/pokemons" method="post">
+
+    <form action="/pokemons" method="post" novalidate>
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
+        <input type="text" id="nombre" name="nombre">
         <br><br>
 
         <label for="tipo">Tipo:</label>
-        <select id="tipo" name="tipo" required>
+        <select id="tipo" name="tipo">
             <option value="">-- Selecciona un tipo --</option>
             <option value="Fuego">Fuego</option>
             <option value="Agua">Agua</option>
@@ -30,8 +31,7 @@
         <br><br>
 
         <label for="precio">Precio (€):</label>
-        <input type="number" id="precio" name="precio"
-               step="0.01" min="0" required>
+        <input type="number" id="precio" name="precio">
         <br><br>
 
         <button type="submit">Crear Pokemon</button>
