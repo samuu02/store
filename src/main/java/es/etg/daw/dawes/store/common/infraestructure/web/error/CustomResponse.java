@@ -1,4 +1,4 @@
-package es.etg.daw.dawes.store.pokemon.infraestructure.web.error;
+package es.etg.daw.dawes.store.common.infraestructure.web.error;
 
 import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;

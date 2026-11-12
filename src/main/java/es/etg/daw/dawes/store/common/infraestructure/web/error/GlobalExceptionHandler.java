@@ -1,4 +1,4 @@
-package es.etg.daw.dawes.store.pokemon.infraestructure.web.error;
+package es.etg.daw.dawes.store.common.infraestructure.web.error;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    // 1. Manejo de NullPointerException (HTTP 500)
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> nullPointerHandler(NullPointerException nfe) {
         String msg = nfe.getMessage() != null ? nfe.getMessage() : "Se ha producido un error de puntero nulo.";
@@ -27,7 +26,6 @@ public class GlobalExceptionHandler {
                 .body(html);
     }
 
-    // 2. Manejo Centralizado de Errores de Validación (HTTP 400)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         StringBuilder html = new StringBuilder(256);
@@ -56,7 +54,6 @@ public class GlobalExceptionHandler {
                 .body(html.toString());
     }
 
-    // 3. Manejo Genérico para Excepciones No Controladas (HTTP 500)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> genericExceptionHandler(Exception ex) {
         String msg = ex.getMessage() != null ? ex.getMessage() : "Error no esperado en el servidor.";
