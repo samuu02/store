@@ -1,28 +1,54 @@
-![Pokemon Store](docs/banner.jpg)
+![Pokemon Store](doc/img/banner.jpg)
 
-Aplicación desarrollada con **Java y Spring Boot** para gestionar Pokemon, organizada siguiendo los principios de **Clean Architecture** y el enfoque de **Vertical Slicing**.
-- Hasta ahora, un slice: Pokemon, con cuatro funcionalidades: crear, listar, borrar y modificar Pokemon.
-## Tecnologías
-- Java
-- Spring Boot
-- Maven
-- Lombok
-## Arquitectura
-El proyecto utiliza **Clean Architecture** para separar las responsabilidades y reducir el acoplamiento entre distintas capas.
-- **Domain:** contiene el modelo y los datos.
-- **Application:** contiene los distintos casos de uso para operar con los datos.
-- **Infraestructure:** contiene los componentes necesarios para conectar la aplicación con el exterior.
 
-Además, se usa **Vertical Slicing** para organizar la aplicación en torno a las funcionalidades de negocio de forma vertical.
-## Funcionalidad 
-- Crear Pokemon
-- Obtener listado de Pokemons
-- Borrar Pokemon
-- Modificar Pokemon
-## Ejecución
-1. Ejecución de la aplicación
-2. Dependiendo de la funcionalidad, tenemos varias formas de usar la aplicación, todas accesibles desde el navegador:
-- Crear Pokemon: http://localhost:8080/formulario-crear-pokemon.html
-- Obtener listado de Pokemons: http://localhost:8080/pokemons
-- Borrar Pokemon: http://localhost:8080/formulario-borrar-pokemon.html
-- Editar Pokemon: ```curl -i -X PUT http://localhost:8080/pokemons/5 -H "Content-Type: application/json" -d '{"nombre":"Pikachu","tipo":"Electrico","foto":"nueva.jpg","precio":25}'```
+**Pokémon Store** es una aplicación que estamos desarrollando como proyecto de la asignatura de Entorno Servidor de segundo curso del Ciclo Formativo de Grado Superior de Desarrollo de Aplicaciones Web (DAW).
+
+A través de este proyecto ponemos en práctica los conocimientos adquiridos durante el curso, trabajando en el desarrollo de una aplicación y aplicando diferentes conceptos relacionados con la programación, la arquitectura de software y la organización del código.
+
+**Versión:** 1.0.0
+
+### Integrantes
+
+- David Crisbasianu Petronga
+- Álvaro Cabrejas Ormeño
+- Samuel Alonso Álvarez
+
+---
+
+## Sobre el proyecto
+
+El desarrollo de Pokémon Store nos permite trabajar con una aplicación organizada mediante **Clean Architecture** y **Vertical Slicing**.
+
+Hemos comenzado organizando el código en dos slices:
+
+- **`pokemon`:** agrupa los elementos relacionados con la funcionalidad de los Pokémon.
+- **`common`:** contiene los elementos compartidos por las diferentes partes de la aplicación.
+
+Esta organización nos permite desarrollar el proyecto de forma progresiva, incorporando los conceptos que vamos aprendiendo y aplicándolos directamente sobre el código.
+
+## Funcionalidades
+
+La aplicación cuenta con la gestión de Pokemon mediante los cuatro métodos HTTP:
+
+| Método HTTP | Operación |
+|---|---|
+| GET | Consultar todos los Pokémon |
+| POST | Crear un Pokémon |
+| PUT | Modificar un Pokémon |
+| DELETE | Eliminar un Pokémon |
+
+## Documentación
+
+En la carpeta [`doc/`](doc/) se encuentra la documentación del proyecto, donde explicamos su contexto, diseño, arquitectura, implementación y otros aspectos relacionados con el desarrollo.
+
+| Apartado | Documento |
+|---|---|
+| Contexto de la aplicación | [01 - Contexto](doc/01-contexto.md) |
+| Diseño | [02 - Diseño](doc/02-diseno.md) |
+| Implementación | [03 - Implementación](doc/03-implementacion.md) |
+| Ejecución y pruebas | [04 - Ejecución y pruebas](doc/04-ejecucion-y-pruebas.md) |
+| Herramientas y versiones | [05 - Herramientas y versiones](doc/05-herramientas-y-versiones.md) |
+| Elementos destacables | [06 - Elementos destacables](doc/06-elementos-destacables.md) |
+| Manual de usuario | [07 - Manual de usuario](doc/07-manual-de-usuario.md) |
+| Conclusiones | [08 - Conclusiones](doc/08-conclusiones.md) |
+| Referencias y bibliografía | [09 - Referencias y bibliografía](doc/09-referencias-y-bibliografia.md) |
